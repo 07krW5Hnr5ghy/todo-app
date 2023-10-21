@@ -1,6 +1,9 @@
+import { Button } from "@radix-ui/themes";
 const TasksPage = () => {
     return (
-        <div>TasksPage</div>
+        <div>
+            <Button>New Issue</Button>
+        </div>
     )
 }
 
