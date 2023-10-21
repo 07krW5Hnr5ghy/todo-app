@@ -1,7 +1,11 @@
-import Link from 'next/link'
-import { GrTasks } from 'react-icons/gr'
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import classNames from 'classnames';
+import { GrTasks } from 'react-icons/gr';
 
 const Navbar = () => {
+    const currentPath = usePathname();
     const links = [
         { label: 'Dashboard', href: '/' },
         { label: 'Tasks', href: '/tasks' },
@@ -11,7 +15,11 @@ const Navbar = () => {
             <Link href="/"><GrTasks /></Link>
             <ul className="flex space-x-5">
                 {links.map((link, index) =>
-                    <li key={index} className="text-zinc-600 hover:text-zinc-800 transition-colors">
+                    <li key={index} className={classNames({
+                        "text-zinc-100": link.href === currentPath,
+                        "text-zinc-500": link.href !== currentPath,
+                        "hover:text-zinc-300 transition-colors": true
+                    })}>
                         <Link href={link.href}>{link.label}</Link>
                     </li>)}
             </ul>
